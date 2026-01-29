@@ -1,0 +1,51 @@
+importnumpy as np.
+
+importmatplotlib.pyplot as plt
+
+fromsklearn.linear_model import Linear Regression
+
+fromsklearn.metrics import mean squared_error, r2_score
+
+#Generate synthetic data for demonstration
+
+np.random.seed(0)
+
+X2 np.random.rand(100, 1)
+
+y=4+3+X+np.random.randn(100, 1)
+
+#Create a linear regression model
+
+model Linear Regression()
+
+#Fit the model to the data model.fit(X, y)
+
+Predict using the model y pred model.predict(X)
+
+#Coefficients
+
+13/47
+
+print("Coefficients: \n", model.coef_)
+
+#Mean squared error
+
+print("Mean squared error: %.2f" % mean_squared_error(y, y_pred))
+
+#Coefficient of determination (R^2)
+
+print("Coefficient of determination (R^2); %.2f" % r2_score(y, y pred))
+
+#Plotting the results
+
+plt.scatter(X, y, color='black')
+
+plt.plot(X, y pred, color='blue', linewidth=3)
+
+plt.xlabel(X)
+
+plt.ylabel('y')
+
+plt.title(Linear Regression Example")
+
+plt.show()
