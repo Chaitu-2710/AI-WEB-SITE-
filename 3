@@ -1,51 +1,82 @@
-importnumpy as np.
-
-importmatplotlib.pyplot as plt
-
-fromsklearn.linear_model import Linear Regression
-
-fromsklearn.metrics import mean squared_error, r2_score
-
-#Generate synthetic data for demonstration
-
+4. Implement Logistic regression
+Aim:
+The aim of this Python program is to demonstrate the implementation of a logistic regression
+model.
+Logistic Regression
+Logistic regression is a statistical method used for binary classification, which
+predicts the probability that an observation belongs to one of two classes. It is widely used for
+binary outcomes in various fields such as medicine, finance, and social sciences.
+Software Used: Python 3.7.2
+Modules Used: Matplot lib, numpy
+Library Used: sklearn-learn
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix
+from sklearn.model_selection import train_test_split
+# Generate synthetic data
 np.random.seed(0)
-
-X2 np.random.rand(100, 1)
-
-y=4+3+X+np.random.randn(100, 1)
-
-#Create a linear regression model
-
-model Linear Regression()
-
-#Fit the model to the data model.fit(X, y)
-
-Predict using the model y pred model.predict(X)
-
-#Coefficients
-
-13/47
-
-print("Coefficients: \n", model.coef_)
-
-#Mean squared error
-
-print("Mean squared error: %.2f" % mean_squared_error(y, y_pred))
-
-#Coefficient of determination (R^2)
-
-print("Coefficient of determination (R^2); %.2f" % r2_score(y, y pred))
-
-#Plotting the results
-
-plt.scatter(X, y, color='black')
-
-plt.plot(X, y pred, color='blue', linewidth=3)
-
-plt.xlabel(X)
-
-plt.ylabel('y')
-
-plt.title(Linear Regression Example")
-
+X = np.random.randn(200, 2)
+y = np.array([1 if x[0] + x[1] > 0 else 0 for x in X])
+# Split the data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+# Create a logistic regression model
+model = LogisticRegression()
+# Fit the model to the training data
+model.fit(X_train, y_train)
+# Predict using the model
+y_pred = model.predict(X_test)
+# Performance evaluation
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+# Plotting the results
+plt.scatter(X_test[:, 0], X_test[:, 1], c=y_test)
+plt.xlabel('Feature 1')
+plt.ylabel('Feature 2')
+plt.title('Logistic Regression Classification')
 plt.show()
+Output:
+5. Implement Decision tree induction for classification
+Aim:
+The aim of this Python program is to demonstrate the implementation of a decision tree induction
+model for classification.
+Decision Tree
+Decision trees are a non-linear predictive modeling tool widely used in data mining and machine
+learning. They are particularly useful for handling complex datasets where relationships between
+variables are not easily modeled with linear methods.
+Software Used: Python 3.7.2
+Modules Used: Matplot lib
+Library Used: scikit-learn
+Program:
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import classification_report, confusion_matrix
+import matplotlib.pyplot as plt
+from sklearn import tree
+# Load Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+# Split the dataset into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
+# Create a decision tree classifier
+clf = DecisionTreeClassifier()
+# Fit the classifier to the training data
+clf.fit(X_train, y_train)
+# Predict on the test data
+y_pred = clf.predict(X_test)
+# Performance evaluation
+print("Classification Report:")
+print(classification_report(y_test, y_pred))
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+# Plot the decision tree
+plt.figure(figsize=(12,12))
+tree.plot_tree(clf, filled=True, feature_names=iris.feature_names,
+class_names=iris.target_names)
+plt.title('Decision Tree for Iris Dataset')
+plt.show()
+Output:
