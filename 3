@@ -1,82 +1,253 @@
-4. Implement Logistic regression
-Aim:
-The aim of this Python program is to demonstrate the implementation of a logistic regression
-model.
-Logistic Regression
-Logistic regression is a statistical method used for binary classification, which
-predicts the probability that an observation belongs to one of two classes. It is widely used for
-binary outcomes in various fields such as medicine, finance, and social sciences.
-Software Used: Python 3.7.2
-Modules Used: Matplot lib, numpy
-Library Used: sklearn-learn
-import numpy as np
-import matplotlib.pyplot as plt
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import classification_report, confusion_matrix
-from sklearn.model_selection import train_test_split
-# Generate synthetic data
-np.random.seed(0)
-X = np.random.randn(200, 2)
-y = np.array([1 if x[0] + x[1] > 0 else 0 for x in X])
-# Split the data into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-# Create a logistic regression model
-model = LogisticRegression()
-# Fit the model to the training data
-model.fit(X_train, y_train)
-# Predict using the model
-y_pred = model.predict(X_test)
-# Performance evaluation
-print("Classification Report:")
-print(classification_report(y_test, y_pred))
-print("Confusion Matrix:")
-print(confusion_matrix(y_test, y_pred))
-# Plotting the results
-plt.scatter(X_test[:, 0], X_test[:, 1], c=y_test)
-plt.xlabel('Feature 1')
-plt.ylabel('Feature 2')
-plt.title('Logistic Regression Classification')
-plt.show()
-Output:
-5. Implement Decision tree induction for classification
-Aim:
-The aim of this Python program is to demonstrate the implementation of a decision tree induction
-model for classification.
-Decision Tree
-Decision trees are a non-linear predictive modeling tool widely used in data mining and machine
-learning. They are particularly useful for handling complex datasets where relationships between
-variables are not easily modeled with linear methods.
-Software Used: Python 3.7.2
-Modules Used: Matplot lib
-Library Used: scikit-learn
+Experiment Title
+Text Processing using Tokenization and Stop Word Removal
+Aim
+To implement basic text processing techniques such as Tokenization and Stop Word Removal using Python and NLTK.
+Introduction
+Natural Language Processing (NLP) is a branch of Artificial Intelligence that enables computers to understand, analyze, and process human language. Raw text data cannot be directly processed by a machine. Therefore, text must be preprocessed before applying any NLP task.
+Tokenization and Stop Word Removal are the initial and most important steps in the NLP pipeline. These steps convert raw text into a structured form suitable for further analysis.
+NLP Pipeline
+The general NLP pipeline consists of the following steps:
+1.	Text Input
+2.	Tokenization
+3.	Stop Word Removal
+4.	Stemming / Lemmatization
+5.	Feature Extraction
+6.	NLP Task (Classification, Translation, etc.)
+In this experiment, Tokenization and Stop Word Removal are implemented.
+Tokenization
+Tokenization is the process of breaking a given text into smaller units called tokens. Tokens can be words, punctuation marks, or symbols.
+1)	import nltk
+nltk.download('punkt')
+nltk.download('punkt_tab')
+
+from nltk.tokenize import word_tokenize
+
+text = "Natural Language Processing is an interesting subject."
+
+tokens = word_tokenize(text)
+print("Tokens:", tokens)
+ 
+b) import nltk
+nltk.download('punkt')
+nltk.download('punkt_tab')
+nltk.download('stopwords')
+
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+
+text = "Natural Language Processing is an interesting subject"
+
+tokens = word_tokenize(text)
+stop_words = set(stopwords.words('english'))
+
+filtered_words = [word for word in tokens if word.lower() not in stop_words]
+
+print("After Stop Word Removal:", filtered_words)
+ 
+2)
+import nltk
+nltk.download('punkt')
+
+from nltk.tokenize import word_tokenize
+from nltk.stem import PorterStemmer
+
+# Create Porter Stemmer object
+ps = PorterStemmer()
+
+# Input text
+text = "Natural Language Processing involves processing words and reducing words to their root form"
+
+# Tokenize the text
+tokens = word_tokenize(text)
+
+print("Original Words:")
+print(tokens)
+
+print("\nStemmed Words:")
+for word in tokens:
+    print(word, "->", ps.stem(word))
+ 
+
+Experiment Title
+Implementation of Porter Stemmer Algorithm
+ 
+Aim
+To implement the Porter Stemming Algorithm using Python and NLTK to reduce words to their root form.
+ 
+Introduction
+. In Natural Language Processing (NLP), words often appear in different forms such as connect, connected, connecting. Processing all these forms separately increases complexity. To handle this problem, stemming is used.
+Stemming is the process of reducing words to their base or root form by removing suffixes. The Porter Stemmer is one of the most widely used stemming algorithms in NLP.
+ 
+Stemming
+Stemming removes common suffixes such as –ing, –ed, –ly, –s from words. The resulting word is called a stem. The stem may not always be a valid dictionary word.
+Example:
+Original Word	Stem
+processing	process
+connected	connect
+running	run
+ 
+Porter Stemmer Algorithm
+The Porter Stemmer is a rule-based algorithm proposed by Martin Porter in 1980. It applies a sequence of rules in multiple steps to remove suffixes from words.
+The algorithm works in five main steps, where each step applies a set of rules to reduce the word to its stem. These rules are based on:
+•	Word length
+•	Presence of vowels
+•	Common English suffix patterns
+ 
+Steps of Porter Stemmer
+1.	Removal of plural suffixes (–s, –es)
+2.	Removal of past tense suffixes (–ed)
+3.	Removal of continuous tense suffixes (–ing)
+4.	Removal of derivational suffixes (–ation, –izer, –fulness)
+5.	Final normalization of the stem
+ 
+NLTK and Porter Stemmer
+NLTK (Natural Language Toolkit) provides a built-in implementation of the Porter Stemmer. It simplifies the process of stemming and avoids writing complex rules manually.
+The PorterStemmer() class in NLTK is used to perform stemming operations on words
+ 
+Algorithm
+Algorithm for Porter Stemmer
+1.	Import required NLTK modules
+2.	Create a Porter Stemmer object
+3.	Read input text
+4.	Tokenize the text into words
+5.	Apply Porter Stemmer to each word
+6.	Display the stemmed words
+3 ) Write Python Program for a) Word Analysis b) Word Generation
+a)	Word analysis
+import nltk
+from nltk.tokenize import word_tokenize
+
+# Download tokenizer (run only once)
+nltk.download('punkt')
+
+# Sample text
+text = "Natural language processing (NLP) is the ability of a computer program to understand human language as it is spoken."
+
+# Tokenize the text into words
+tokens = word_tokenize(text)
+
+# Print tokens
+print("Tokens:")
+print(tokens)
+
+# Perform frequency analysis on the tokens
+word_freq = nltk.FreqDist(tokens)
+
+# Print the 10 most frequent words
+print("\nThe 10 most frequent words are:")
+for word, freq in word_freq.most_common(10):
+    print(f"{word}: {freq}")
+ 
+
+
+
+b)	word generation 
+# Word Generation using user input (no random values)
+
+# Function to generate words
+def generate_words(root_word):
+    suffixes = ['s', 'ing', 'ed', 'er', 'ness']
+    generated_words = []
+
+    for suffix in suffixes:
+        generated_words.append(root_word + suffix)
+
+    return generated_words
+
+# Take input from user at runtime
+root = input("Enter a root word: ")
+
+# Generate words
+result = generate_words(root)
+
+# Print generated words
+print("\nGenerated Words:")
+for word in result:
+    print(word)
+ 
+Experiment Title
+Word Sense Disambiguation 
+Aim
+To implement Word Sense Disambiguation (WSD) using Python and NLTK in order to identify the correct meaning of ambiguous words based on context.
+ 
+Introduction
+In Natural Language Processing, many words have more than one meaning. Such words are called ambiguous words. Humans easily understand the correct meaning of a word by observing the context, but it is difficult for a computer to do the same.
+Word Sense Disambiguation (WSD) is the task of determining the correct meaning (sense) of a word when it appears in different contexts. WSD plays an important role in applications such as machine translation, information retrieval, and question answering systems.
+ 
+Ambiguous Words
+An ambiguous word is a word that has multiple meanings.
+Examples:
+Word	Meanings
+bank	financial institution / river side
+bat	animal / sports equipment
+plant	factory / living organism
+crane	bird / machine
+mouse	animal / computer device
+ 
+Word Sense Disambiguation (WSD)
+Word Sense Disambiguation is the process of assigning the correct meaning to an ambiguous word based on the surrounding words in a sentence.
+Example:
+•	I deposited money in the bank → bank = financial institution
+•	The children sat on the river bank → bank = river side
+ 
+Lesk Algorithm
+The Lesk Algorithm is a classical and dictionary-based approach to WSD. It works by comparing the words in the given sentence with the dictionary definitions of each possible meaning of the ambiguous word.
+The sense whose definition has the maximum overlap with the context words is selected as the correct sense.
+ 
+WordNet
+WordNet is a large lexical database of English provided by NLTK. It groups words into sets of synonyms called synsets and provides:
+•	Definitions
+•	Examples
+•	Relationships between words
+The Lesk algorithm uses WordNet to obtain possible meanings of ambiguous words.
+ 
+Algorithm
+Algorithm for Word Sense Disambiguation
+1.	Import required NLTK libraries
+2.	Read the input sentence containing an ambiguous word
+3.	Tokenize the sentence into words
+4.	Apply the Lesk algorithm
+5.	Compare context words with WordNet definitions
+6.	Select the sense with maximum overlap
+7.	Display the correct sense and its definition
+ 
+Working Principle
+•	The sentence is tokenized into words
+•	The ambiguous word is identified
+•	All possible meanings of the word are obtained from WordNet
+•	Each meaning is compared with the context
+•	The most relevant meaning is selected
+ 
+Applications of WSD
+•	Machine Translation
+•	Information Retrieval
+•	Question Answering Systems
+•	Text Summarization
+•	Chatbots
+•	# Word Sense Disambiguation using Lesk Algorithm
+•	
 Program:
-from sklearn.datasets import load_iris
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, confusion_matrix
-import matplotlib.pyplot as plt
-from sklearn import tree
-# Load Iris dataset
-iris = load_iris()
-X = iris.data
-y = iris.target
-# Split the dataset into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3)
-# Create a decision tree classifier
-clf = DecisionTreeClassifier()
-# Fit the classifier to the training data
-clf.fit(X_train, y_train)
-# Predict on the test data
-y_pred = clf.predict(X_test)
-# Performance evaluation
-print("Classification Report:")
-print(classification_report(y_test, y_pred))
-print("Confusion Matrix:")
-print(confusion_matrix(y_test, y_pred))
-# Plot the decision tree
-plt.figure(figsize=(12,12))
-tree.plot_tree(clf, filled=True, feature_names=iris.feature_names,
-class_names=iris.target_names)
-plt.title('Decision Tree for Iris Dataset')
-plt.show()
-Output:
+
+import nltk
+from nltk.wsd import lesk
+from nltk.tokenize import word_tokenize
+
+nltk.download('punkt')
+nltk.download('wordnet')
+
+sentence = input("Enter a sentence: ")
+ambiguous_word = input("Enter the ambiguous word: ")
+
+tokens = word_tokenize(sentence)
+
+sense = lesk(tokens, ambiguous_word)
+
+print("\nWord Sense Disambiguation Result:")
+print("Sentence:", sentence)
+print("Ambiguous Word:", ambiguous_word)
+
+if sense:
+    print("Identified Sense:", sense.definition())
+else:
+    print("Sense could not be identified")
+ 
